@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-function Counter() {
-  const [counter, setCounter] = useState(0); //숫자, 문자, 배열 다 들어갈 수 있다.
-
+function Counter({ counter, setCounter }) {
   const addCounter = () => {
     setCounter(counter + 1);
   };
@@ -13,6 +11,7 @@ function Counter() {
       <button onClick={addCounter}>Click me</button>
     </div>
   );
+  return;
 }
 
 export default Counter;
