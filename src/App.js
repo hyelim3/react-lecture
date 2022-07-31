@@ -1,15 +1,33 @@
 import React, { useState } from "react";
 import Converter from "./Components/Converter";
 import Counter from "./Components/Counter";
+import MyBtn from "./Components/MyBtn";
 
 function App() {
-  const [counter, setCounter] = useState(0); //숫자, 문자, 배열 다 들어갈 수 있다.
-  let name = "송혜림";
+  const [minutes, setMinutes] = useState(0);
   return (
-    <>
-      <Counter counter={counter} setCounter={setCounter} name={name} />
-      <Converter counter={counter} />
-    </>
+    <div>
+      <div>Time Converter</div>
+      <div>
+        Minutes{" "}
+        <input
+          placeholder="Minutes"
+          value={minutes}
+          type="number"
+          onChange={(event) => {
+            setMinutes(event.target.value);
+          }}
+        />
+        <div>
+          Hours
+          <input
+            type="number"
+            placeholder="Hours"
+            value={Math.floor(minutes / 60)}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
