@@ -4,15 +4,16 @@ import Counter from "./Components/Counter";
 import MyBtn from "./Components/MyBtn";
 
 function App() {
-  const [minutes, setMinutes] = useState(0);
-  const [active, setActive] = useState(false);
+  const [amount, setAmount] = useState(0);
+  const [active, setActive] = useState(true);
   const reset = () => {
-    setMinutes(0);
+    setAmount(0);
   };
   const onChange = (event) => {
-    setMinutes(event.target.value);
+    setAmount(event.target.value);
   };
   const changeActive = () => {
+    reset();
     setActive(!active);
   };
 
@@ -23,20 +24,23 @@ function App() {
         Minutes{" "}
         <input
           placeholder="Minutes"
-          value={minutes}
+          value={active ? amount : amount * 60}
           type="number"
           onChange={onChange}
-          disabled={active !== false}
-          //active
+          disabled={!active}
+          //활성화 되어있을 때 active true -> 꺼지면 안되니깐 반전값을 넣어야함
         />
         <div>
           Hours{" "}
           <input
             type="number"
             placeholder="Hours"
-            value={Math.floor(minutes / 60)}
-            disabled={active === false}
+            value={active ? Math.floor(amount / 60) : amount}
+            //active 값이 true일 대 실행 비활성화되면 active true -> 비활성 amount 변환
+
+            disabled={active}
             // active 최초의 거짓, !active
+            onChange={onChange}
           />
           <div>
             <button onClick={reset}>reset</button>
